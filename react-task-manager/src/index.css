@@ -9,7 +9,7 @@
 
   /* Tasks */
   --high-text: #e97579;
-  --high-bg: #e64e4a;
+  --high-bg: #4a2426;
   --high-border: #da1e28;
 
   --medium-text: #f1aa21;
@@ -44,6 +44,7 @@
 body,
 html {
   background-color: var(--bg);
+  height: 100%;
 }
 
 body {
