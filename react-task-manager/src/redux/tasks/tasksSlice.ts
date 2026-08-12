@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { Task } from "../../types/task";
-import { getTasksFromLocalStorage } from "../../utils/storage";
+import {
+  getTasksFromLocalStorage,
+  saveTasksToLocalStorage,
+} from "../../utils/storage";
 import { isPriority } from "../../utils/validator";
 
 const initialState: Task[] = getTasksFromLocalStorage();
@@ -16,6 +19,7 @@ const tasksSlice = createSlice({
       }
 
       state.push(action.payload);
+      saveTasksToLocalStorage(state);
     },
     editTask: (state, action: PayloadAction<Task>) => {
       if (!isPriority(action.payload.priority)) {
@@ -26,18 +30,24 @@ const tasksSlice = createSlice({
 
       if (index !== -1) {
         state[index] = action.payload;
+        saveTasksToLocalStorage(state);
       }
     },
-    deleteTask: (state, action: PayloadAction<Task>) => {
-      const index = state.findIndex((task) => task.id === action.payload.id);
+    deleteTask: (state, action: PayloadAction<string>) => {
+      const index = state.findIndex((task) => task.id === action.payload);
 
       if (index !== -1) {
         state.splice(index, 1);
+        saveTasksToLocalStorage(state);
       }
+    },
+    replaceTasks: (_, action: PayloadAction<Task[]>) => {
+      return action.payload;
     },
   },
 });
 
-export const { addTask, editTask, deleteTask } = tasksSlice.actions;
+export const { addTask, editTask, deleteTask, replaceTasks } =
+  tasksSlice.actions;
 
 export default tasksSlice.reducer;
