@@ -1,15 +1,23 @@
 interface ButtonProps {
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   text: string;
   style: "blue" | "gray";
+  type?: "button" | "submit";
   onClick?: () => void;
 }
 
-export default function Button({ icon, text, style, onClick }: ButtonProps) {
+export default function Button({
+  icon,
+  text,
+  style,
+  type = "button",
+  onClick,
+}: ButtonProps) {
   return (
     <button
-      className={`flex items-center gap-2 text-white ${style === "blue" ? "bg-primary" : "bg-border"}  font-medium px-2 py-3 cursor-pointer hover:opacity-80`}
+      className={`flex items-center gap-2 text-white ${style === "blue" ? "bg-primary" : "bg-border"}  font-medium p-3 cursor-pointer hover:opacity-80`}
       onClick={onClick}
+      type={type}
     >
       <span>{text}</span>
       {icon}
