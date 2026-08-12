@@ -1,0 +1,20 @@
+:root {
+  --primary: #0f62fe;
+  --secondary: #262626;
+  --bg: #161616;
+  --white: #ffffff;
+  --border: #393939;
+
+  /* Tasks */
+  --high-text: #e97579;
+  --high-bg: #e64e4a;
+  --high-border: #da1e28;
+
+  --medium-text: #f1aa21;
+  --medium-bg: #4e4523;
+  --medium-border: #f1c21b;
+
+  --low-text: #4abe8c;
+  --low-bg: #233829;
+  --low-border: #198038;
+}
